@@ -1,9 +1,8 @@
 import random
 from re import M
 
-
-
-def re_run(): #ask to play again
+#ask to play again
+def re_run(): 
     play_again = input("\nDo you think you can handle another round? (Y/N): ").upper()
     if play_again == "Y":
         play_game()
@@ -11,7 +10,7 @@ def re_run(): #ask to play again
         print("Well fine, be that way")
         exit()
 
-
+#runs the game
 def play_game():
     file = open("test-word.txt", "r")    #import words file
     open_file = file.read() #read the opened file
@@ -24,13 +23,12 @@ def play_game():
     print("\nYour word is", len(mystery_word), "letters long")
     
     while attempts > 0:
-        #increase turn number
-        #print current letter/blank spaces, letters guessed
         print("You have", attempts, "attempts remaining")
         print("Letters already guessed", letters_guessed)
         print(blanks)
-        #user input
-        guess = input("Enter a letter A-Z: ").upper()
+        
+        guess = input("Enter a letter A-Z: ").upper() #user inputs a char
+
         #compare user input to mystery word
         if len(guess) > 1: #user entered more than 1 letter
             print("One guess a time bozo\n")
@@ -56,7 +54,8 @@ def play_game():
             print("The word was", mystery_word)
             re_run()
     #ask user if they would like to play
-    
+
+#intial prompt    
 if __name__ == "__main__":
     question = input("Would you like to play a game...? (Y/N): ").upper()
     if question == "Y":
@@ -64,6 +63,7 @@ if __name__ == "__main__":
         play_game()
     else:
         print("Then why are you bothering me?")
+        exit()
     
 
 
