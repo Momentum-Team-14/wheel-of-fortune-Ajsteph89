@@ -9,39 +9,38 @@ def re_run(): #ask to play again
         play_game()
     else:
         print("Well fine, be that way")
+        exit()
 
 
 def play_game():
-    file = open("words.txt", "r")    #import words file
+    file = open("test-word.txt", "r")    #import words file
     open_file = file.read() #read the opened file
     words_list = open_file.upper().split()   # #make all the words upper case
     mystery_word = random.choice(words_list) #choose random word from list
     blanks = (len(mystery_word)*"_") #make blank spaces
-    attempts = 0  #set counter for guess attempts
+    attempts = 8  #set counter for guess attempts
     letters_guessed = [] #set list for letters user has already guessed
 
     print("\nYour word is", len(mystery_word), "letters long")
     
-    while attempts < 8:
+    while attempts > 0:
         #increase turn number
-        attempts +=1
         #print current letter/blank spaces, letters guessed
-        print("Guess", attempts, "of 8")
+        print("You have", attempts, "attempts remaining")
         print("Letters already guessed", letters_guessed)
         print(blanks)
         #user input
-        guess = input("Guess a letter A-Z: ").upper()
+        guess = input("Enter a letter A-Z: ").upper()
         #compare user input to mystery word
         if len(guess) > 1: #user entered more than 1 letter
-            attempts -= 1
             print("One guess a time bozo\n")
         elif guess in letters_guessed: #user entered duplicate guess
-            attempts -= 1
             print("Ummm you already tried that\n")
         elif guess not in letters_guessed: #add user guess to list
+            attempts -= 1
             letters_guessed.append(guess)
             if guess in mystery_word: #correct guess
-                attempts -= 1
+                attempts += 1
                 for i in range(0, len(mystery_word)):
                     if guess == mystery_word[i]:
                         print("Correct\n")
@@ -52,7 +51,7 @@ def play_game():
             print("You Win...this time....")
             print("The word was", mystery_word)
             re_run()
-        if attempts == 8: #user fails to guess the word
+        if attempts == 0: #user fails to guess the word
             print("HAHAHAHAH YOU LOSE")
             print("The word was", mystery_word)
             re_run()
