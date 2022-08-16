@@ -12,7 +12,7 @@ def re_run():
 
 #runs the game
 def play_game():
-    file = open("test-word.txt", "r")    #import words file
+    file = open("words.txt", "r")    #import words file
     open_file = file.read() #read the opened file
     words_list = open_file.upper().split()   # #make all the words upper case
     mystery_word = random.choice(words_list) #choose random word from list
@@ -47,22 +47,24 @@ def play_game():
                 print("Incorrect\n")
         if "_" not in blanks:  #wincon
             print("You Win...this time....")
-            print("The word was", mystery_word)
+            print("As you know, the word was", mystery_word)
             re_run()
         if attempts == 0: #user fails to guess the word
-            print("HAHAHAHAH YOU LOSE")
+            print("MWHAHAHAHA YOU LOSE")
             print("The word was", mystery_word)
             re_run()
-    #ask user if they would like to play
+
 
 #intial prompt    
 if __name__ == "__main__":
     question = input("Would you like to play a game...? (Y/N): ").upper()
     if question == "Y":
-        print("Then try to guess the word, you get 8 incorrect guesses...\n")
+        print("\nThen try to guess the word, you get 8 incorrect guesses...")
         play_game()
-    else:
+    elif question == "N":
         print("Then why are you bothering me?")
+    else:
+        print("Must you behave this way?")
         exit()
     
 
