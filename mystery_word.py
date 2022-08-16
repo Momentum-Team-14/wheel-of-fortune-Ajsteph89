@@ -20,16 +20,16 @@ def play_game():
     attempts = 8  #set counter for guess attempts
     letters_guessed = [] #set list for letters user has already guessed
 
-    print("\nYour word is", len(mystery_word), "letters long")
+    print("Your word is", len(mystery_word), "letters long\n")
     
     while attempts > 0:
         print("You have", attempts, "attempts remaining")
-        print("Letters already guessed", letters_guessed)
         print(blanks)
+        print("Letters already guessed", letters_guessed)
         
         guess = input("Enter a letter A-Z: ").upper() #user inputs a char
 
-        #compare user input to mystery word
+        #evaluate user input
         if len(guess) > 1: #user entered more than 1 letter
             print("\nOne guess a time bozo\n")
         elif guess in letters_guessed: #user entered duplicate guess
@@ -44,7 +44,7 @@ def play_game():
                         print("\nCorrect\n")
                         blanks = blanks[:i] + guess +blanks[i+1:] #replace black spaces w/ correct letters
             else: #user makes incorrect guess
-                print("\nIncorrect\n")
+                print("\nIncorrect")
         if "_" not in blanks:  #wincon
             print("You Win...this time....")
             print("As you know, the word was", mystery_word)
